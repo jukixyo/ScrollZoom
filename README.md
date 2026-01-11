@@ -5,6 +5,12 @@ A lightweight client-side mod for **Among Us** that lets you zoom the camera usi
 
 ---
 
+## Showcase
+
+_**Not yet added**_
+
+---
+
 ## Features
 
 * Scroll to zoom in and out
@@ -63,12 +69,6 @@ Zoom is automatically reset:
 
 > [!CAUTION]
 > If another mod modifies camera or shadow behavior, this mod might break.
-
----
-
-## Showcase
-
-_**Not yet added**_
 
 ---
 
