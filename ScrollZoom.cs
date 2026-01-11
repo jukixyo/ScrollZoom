@@ -59,7 +59,7 @@ public static class HudManager_Update_Patch
         if (PlayerControl.LocalPlayer == null)
             return false;
 
-        return PlayerControl.LocalPlayer.Data != null;
+        return ShipStatus.Instance != null;
     }
 
     private static void HandleScrollZoom()
