@@ -6,7 +6,7 @@ A lightweight client-side mod for **Among Us** that lets you zoom the camera usi
 
 ## Showcase
 
-_**Not yet added**_
+![2026-01-11 22-40-52](https://github.com/user-attachments/assets/8e33dc78-edf8-4cbb-975a-766a35608079)
 
 ---
 
