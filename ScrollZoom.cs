@@ -92,6 +92,22 @@ public static class HudManager_Update_Patch
 
             _targetZoom = _defaultZoom;
         }
+
+        if (HudManager.Instance && HudManager.Instance.ShadowQuad)
+        {
+            bool isDead = PlayerControl.LocalPlayer != null
+                        && PlayerControl.LocalPlayer.Data != null
+                        && PlayerControl.LocalPlayer.Data.IsDead;
+
+            if (isDead)
+            {
+                HudManager.Instance.ShadowQuad.gameObject.SetActive(false);
+            }
+            else
+            {
+                HudManager.Instance.ShadowQuad.gameObject.SetActive(true);
+            }
+        }
     }
 
     private static void ResetAllZoomState()

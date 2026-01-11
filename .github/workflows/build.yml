@@ -1,0 +1,55 @@
+name: Build Mod
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build (Release)
+      run: dotnet build -c Release --no-restore
+
+    - name: Prepare folders
+      run: |
+        mkdir output
+        mkdir output\x64
+        mkdir output\x86
+
+    - name: Copy BepInEx templates
+      run: |
+        xcopy BepInExTemplates\IL2CPP_x64 output\x64 /E /I /Y
+        xcopy BepInExTemplates\IL2CPP_x86 output\x86 /E /I /Y
+
+    - name: Copy mod DLL into plugins
+      run: |
+        copy bin\Release\net6.0\ScrollZoomMod.dll output\x64\BepInEx\plugins\
+        copy bin\Release\net6.0\ScrollZoomMod.dll output\x86\BepInEx\plugins\
+
+    - name: Zip x64 build
+      run: powershell Compress-Archive -Path output\x64\* -DestinationPath Steam.Itch_x64.zip
+
+    - name: Zip x86 build
+      run: powershell Compress-Archive -Path output\x86\* -DestinationPath Epic.MSStore_x86.zip
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Mod Builds
+        path: |
+          Steam.Itch_x64.zip
+          Epic.MSStore_x86.zip

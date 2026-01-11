@@ -9,47 +9,47 @@
   <ItemGroup>
     <!-- Harmony -->
     <Reference Include="0Harmony">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>libs\BepInEx\0Harmony.dll</HintPath>
     </Reference>
 
     <!-- BepInEx IL2CPP -->
     <Reference Include="BepInEx.Core">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\core\BepInEx.Core.dll</HintPath>
+      <HintPath>libs\BepInEx\BepInEx.Core.dll</HintPath>
     </Reference>
 
     <Reference Include="BepInEx.Unity.IL2CPP">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\core\BepInEx.Unity.IL2CPP.dll</HintPath>
+      <HintPath>libs\BepInEx\BepInEx.Unity.IL2CPP.dll</HintPath>
     </Reference>
 
     <!-- Il2CppInterop -->
     <Reference Include="Il2CppInterop.Runtime">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\core\Il2CppInterop.Runtime.dll</HintPath>
+      <HintPath>libs\BepInEx\Il2CppInterop.Runtime.dll</HintPath>
     </Reference>
 
     <Reference Include="Il2CppInterop.Common">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\core\Il2CppInterop.Common.dll</HintPath>
+      <HintPath>libs\BepInEx\Il2CppInterop.Common.dll</HintPath>
     </Reference>
 
     <Reference Include="Il2Cppmscorlib">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      <HintPath>libs\interop\Il2Cppmscorlib.dll</HintPath>
     </Reference>
 
-    <!-- Among Us (IL2CPP interop assemblies) -->
+    <!-- Among Us -->
     <Reference Include="Assembly-CSharp">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      <HintPath>libs\interop\Assembly-CSharp.dll</HintPath>
     </Reference>
 
     <!-- Unity -->
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>libs\interop\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
 
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>libs\interop\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
 
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\Nathan Carter\Desktop\TOU Mira\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      <HintPath>libs\interop\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
 
