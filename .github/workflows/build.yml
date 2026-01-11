@@ -37,10 +37,10 @@ jobs:
 
     - name: Copy mod DLL into plugins
       run: |
-        if not exist output\x64\BepInEx\plugins mkdir output\x64\BepInEx\plugins
-        if not exist output\x86\BepInEx\plugins mkdir output\x86\BepInEx\plugins
-        copy bin\Release\netstandard2.1\ScrollZoomMod.dll output\x64\BepInEx\plugins\
-        copy bin\Release\netstandard2.1\ScrollZoomMod.dll output\x86\BepInEx\plugins\
+        New-Item -ItemType Directory -Force -Path output\x64\BepInEx\plugins | Out-Null
+        New-Item -ItemType Directory -Force -Path output\x86\BepInEx\plugins | Out-Null
+        Copy-Item bin\Release\netstandard2.1\ScrollZoomMod.dll output\x64\BepInEx\plugins\
+        Copy-Item bin\Release\netstandard2.1\ScrollZoomMod.dll output\x86\BepInEx\plugins\
 
     - name: Zip x64 build
       run: powershell Compress-Archive -Path output\x64\* -DestinationPath Steam.Itch_x64.zip
