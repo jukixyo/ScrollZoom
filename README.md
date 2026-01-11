@@ -1,4 +1,3 @@
-
 # Scroll Zoom
 
 A lightweight client-side mod for **Among Us** that lets you zoom the camera using your mouse wheel during gameplay.
@@ -61,7 +60,7 @@ Zoom is automatically reset:
 ## Compatibility
 
 | Mod                | Support | Notes                             |
-| ------------------ | ------- | --------------------------------- |
+| ------------------ | :-----: | --------------------------------- |
 | Submerged          | ✅       | Small Visual Bug                  |
 | LevelImpostor      | ✅       |                                   |
 | Town of Us: Mira   | ⚠️      | Mod already has a similar feature |
