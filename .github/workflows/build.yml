@@ -37,8 +37,8 @@ jobs:
 
     - name: Copy mod DLL into plugins
       run: |
-        copy bin\Release\net6.0\ScrollZoomMod.dll output\x64\BepInEx\plugins\
-        copy bin\Release\net6.0\ScrollZoomMod.dll output\x86\BepInEx\plugins\
+        copy bin\Release\netstandard2.1\ScrollZoomMod.dll output\x64\BepInEx\plugins\
+        copy bin\Release\netstandard2.1\ScrollZoomMod.dll output\x86\BepInEx\plugins\
 
     - name: Zip x64 build
       run: powershell Compress-Archive -Path output\x64\* -DestinationPath Steam.Itch_x64.zip
