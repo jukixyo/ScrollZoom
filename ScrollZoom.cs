@@ -112,9 +112,8 @@ public static class HudManager_Update_Patch
             if (Camera.main != null)
                 Camera.main.orthographicSize = _defaultZoom;
 
-            Camera uiCam = FindUICamera();
-            if (uiCam != null)
-                uiCam.orthographicSize = _defaultZoom;
+            if (HudManager.Instance != null && HudManager.Instance.UICamera != null)
+                HudManager.Instance.UICamera.orthographicSize = _defaultZoom;
         }
 
         _targetZoom = -1f;
