@@ -2,9 +2,8 @@ using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
-[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.0.1")]
+[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.0.3")]
 public class ScrollZoomPlugin : BasePlugin
 {
     private Harmony _harmony;
@@ -13,8 +12,7 @@ public class ScrollZoomPlugin : BasePlugin
     {
         _harmony = new Harmony("com.jukixyo.scrollzoom");
         _harmony.PatchAll();
-
-        Log.LogInfo("Thank you for using Scroll Zoom!");
+        Log.LogInfo("Scroll Zoom loaded.");
     }
 }
 
@@ -56,10 +54,7 @@ public static class HudManager_Update_Patch
 
     private static bool IsInGameplay()
     {
-        if (PlayerControl.LocalPlayer == null)
-            return false;
-
-        return ShipStatus.Instance != null;
+        return PlayerControl.LocalPlayer != null && ShipStatus.Instance != null;
     }
 
     private static void HandleScrollZoom()
@@ -67,8 +62,12 @@ public static class HudManager_Update_Patch
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         float current = Camera.main.orthographicSize;
 
-        if (_defaultZoom < 0f)
+        if (_defaultZoom < 0f && PlayerControl.LocalPlayer != null && ShipStatus.Instance != null)
+        {
             _defaultZoom = current;
+            _targetZoom = current;
+            return; // don't zoom on same frame as init
+        }
 
         if (_targetZoom < 0f)
             _targetZoom = current;
@@ -77,8 +76,7 @@ public static class HudManager_Update_Patch
         {
             float newSize = scroll > 0 ? _targetZoom / ZoomStep : _targetZoom * ZoomStep;
             _targetZoom = Mathf.Clamp(newSize, MinZoom, MaxZoom);
-
-            ApplyZoom(_targetZoom, allowUIRefresh: true);
+            ApplyZoom(_targetZoom);
         }
     }
 
@@ -86,9 +84,11 @@ public static class HudManager_Update_Patch
     {
         if (_defaultZoom > 0f)
         {
-            Camera.main.orthographicSize = _defaultZoom;
-            foreach (var cam in Camera.allCameras)
-                cam.orthographicSize = _defaultZoom;
+            if (Camera.main != null)
+                Camera.main.orthographicSize = _defaultZoom;
+
+            if (HudManager.Instance != null && HudManager.Instance.UICamera != null)
+                HudManager.Instance.UICamera.orthographicSize = _defaultZoom;
 
             _targetZoom = _defaultZoom;
         }
@@ -99,35 +99,35 @@ public static class HudManager_Update_Patch
                         && PlayerControl.LocalPlayer.Data != null
                         && PlayerControl.LocalPlayer.Data.IsDead;
 
-            if (isDead)
-            {
-                HudManager.Instance.ShadowQuad.gameObject.SetActive(false);
-            }
-            else
-            {
-                HudManager.Instance.ShadowQuad.gameObject.SetActive(true);
-            }
+            HudManager.Instance.ShadowQuad.gameObject.SetActive(!isDead);
         }
+
+        ReanchorHud();
     }
 
     private static void ResetAllZoomState()
     {
         if (_defaultZoom > 0f)
         {
-            Camera.main.orthographicSize = _defaultZoom;
-            foreach (var cam in Camera.allCameras)
-                cam.orthographicSize = _defaultZoom;
+            if (Camera.main != null)
+                Camera.main.orthographicSize = _defaultZoom;
+
+            Camera uiCam = FindUICamera();
+            if (uiCam != null)
+                uiCam.orthographicSize = _defaultZoom;
         }
 
         _targetZoom = -1f;
         _defaultZoom = -1f;
     }
 
-    private static void ApplyZoom(float size, bool allowUIRefresh)
+    private static void ApplyZoom(float size)
     {
-        Camera.main.orthographicSize = size;
-        foreach (var cam in Camera.allCameras)
-            cam.orthographicSize = size;
+        if (Camera.main != null)
+            Camera.main.orthographicSize = size;
+
+        if (HudManager.Instance != null && HudManager.Instance.UICamera != null) 
+            HudManager.Instance.UICamera.orthographicSize = size;
 
         bool isDead = PlayerControl.LocalPlayer != null
                       && PlayerControl.LocalPlayer.Data != null
@@ -146,17 +146,18 @@ public static class HudManager_Update_Patch
             }
         }
 
-        if (!allowUIRefresh || MeetingHud.Instance != null)
+        ReanchorHud();
+    }
+
+    private static void ReanchorHud()
+    {
+        if (HudManager.Instance == null)
             return;
 
-        ResolutionManager.ResolutionChanged.Invoke(
-            (float)Screen.width / Screen.height,
-            Screen.width,
-            Screen.height,
-            Screen.fullScreen
-        );
-
-        foreach (var ap in Object.FindObjectsOfType<AspectPosition>())
+        var aspects = HudManager.Instance.GetComponentsInChildren<AspectPosition>(true);
+        foreach (var ap in aspects)
+        {
             ap.AdjustPosition();
+        }
     }
 }
