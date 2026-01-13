@@ -53,5 +53,5 @@ jobs:
       with:
         name: Mod Builds
         path: |
-          Steam.Itch_x64.zip
-          Epic.MSStore_x86.zip
+          Steam.Itch_x86.zip
+          Epic.MSStore_x64.zip
