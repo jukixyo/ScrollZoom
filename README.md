@@ -63,8 +63,8 @@ Zoom is automatically reset:
 | ------------------ | :-----: | --------------------------------- |
 | [Submerged](https://github.com/SubmergedAmongUs/Submerged/tree/main/Submerged)          | ✅       | Fully Compatible                  |
 | [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)      | ✅       | Fully Compatible                  |
-| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)   | 🟡      | Untested |
-| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles) | 🟡      | Untested |
+| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)   | ⚠️      | Partially compatible |
+| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles) | ⚫      | Untested |
 
 > [!CAUTION]
 > If another mod modifies camera or shadow behavior, this mod might break.
