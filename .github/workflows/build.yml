@@ -43,10 +43,10 @@ jobs:
         Copy-Item bin\Release\netstandard2.1\ScrollZoomMod.dll output\x86\BepInEx\plugins\
 
     - name: Zip x64 build
-      run: powershell Compress-Archive -Path output\x64\* -DestinationPath Steam.Itch_x64.zip
+      run: powershell Compress-Archive -Path output\x64\* -DestinationPath Epic.MSStore_x64.zip
 
     - name: Zip x86 build
-      run: powershell Compress-Archive -Path output\x86\* -DestinationPath Epic.MSStore_x86.zip
+      run: powershell Compress-Archive -Path output\x86\* -DestinationPath Steam.Itch_x86.zip
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
