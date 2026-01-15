@@ -1,9 +1,13 @@
-name: Build Mod
+name: Build & Release Mod
 
 on:
   push:
-    branches: [ main ]
+    tags:
+      - "v*.*.*"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -24,6 +28,20 @@ jobs:
     - name: Build (Release)
       run: dotnet build -c Release --no-restore
 
+    - name: Read version from BepInPlugin attribute
+      id: version
+      shell: pwsh
+      run: |
+        $content = Get-Content ScrollZoom.cs -Raw
+        if ($content -match 'BepInPlugin\(".*?",\s*".*?",\s*"([^"]+)"\)') {
+          $ver = $matches[1]
+          Write-Host "Detected version: $ver"
+          echo "version=$ver" >> $env:GITHUB_OUTPUT
+        } else {
+          Write-Error "Could not find BepInPlugin version in ScrollZoom.cs"
+          exit 1
+        }
+
     - name: Prepare folders
       run: |
         mkdir output
@@ -42,16 +60,32 @@ jobs:
         Copy-Item bin\Release\netstandard2.1\ScrollZoomMod.dll output\x64\BepInEx\plugins\
         Copy-Item bin\Release\netstandard2.1\ScrollZoomMod.dll output\x86\BepInEx\plugins\
 
-    - name: Zip x64 build
-      run: powershell Compress-Archive -Path output\x64\* -DestinationPath Epic.MSStore_x64.zip
+    - name: Rename DLL for artifact
+      run: |
+        Copy-Item bin\Release\netstandard2.1\ScrollZoomMod.dll `
+          ScrollZoom-${{ steps.version.outputs.version }}.dll
 
-    - name: Zip x86 build
-      run: powershell Compress-Archive -Path output\x86\* -DestinationPath Steam.Itch_x86.zip
+    - name: Zip x64 build (Epic / MS Store)
+      run: |
+        powershell Compress-Archive -Path output\x64\* `
+          -DestinationPath ScrollZoom-v${{ steps.version.outputs.version }}-x64-epic-msstore.zip
 
-    - name: Upload artifacts
+    - name: Zip x86 build (Steam / Itch)
+      run: |
+        powershell Compress-Archive -Path output\x86\* `
+          -DestinationPath ScrollZoom-v${{ steps.version.outputs.version }}-x86-steam-itch.zip
+
+    - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Mod Builds
-        path: |
-          Steam.Itch_x86.zip
-          Epic.MSStore_x64.zip
+        name: ScrollZoom-${{ steps.version.outputs.version }}-dll
+        path: ScrollZoom-${{ steps.version.outputs.version }}.dll
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        name: Scroll Zoom v${{ steps.version.outputs.version }}
+        tag_name: v${{ steps.version.outputs.version }}
+        files: |
+          ScrollZoom-v${{ steps.version.outputs.version }}-x64-epic-msstore.zip
+          ScrollZoom-v${{ steps.version.outputs.version }}-x86-steam-itch.zip

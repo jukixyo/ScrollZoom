@@ -13,6 +13,7 @@ public class ScrollZoomPlugin : BasePlugin
         _harmony = new Harmony("com.jukixyo.scrollzoom");
         _harmony.PatchAll();
         Log.LogInfo("Scroll Zoom loaded.");
+        ModManager.Instance.ShowModStamp();
     }
 }
 
