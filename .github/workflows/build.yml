@@ -75,12 +75,23 @@ jobs:
         powershell Compress-Archive -Path output\x86\* `
           -DestinationPath ScrollZoom-v${{ steps.version.outputs.version }}-x86-steam-itch.zip
 
+    # 🔹 DLL Artifact
     - name: Upload DLL artifact
       uses: actions/upload-artifact@v4
       with:
         name: ScrollZoom-${{ steps.version.outputs.version }}-dll
         path: ScrollZoom-${{ steps.version.outputs.version }}.dll
 
+    # 🔹 ZIP Artifacts (this is what was missing)
+    - name: Upload ZIP artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ScrollZoom-${{ steps.version.outputs.version }}-zips
+        path: |
+          ScrollZoom-v${{ steps.version.outputs.version }}-x64-epic-msstore.zip
+          ScrollZoom-v${{ steps.version.outputs.version }}-x86-steam-itch.zip
+
+    # 🚀 GitHub Release
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
