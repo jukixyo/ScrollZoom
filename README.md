@@ -40,7 +40,7 @@ Zoom is automatically reset:
 | ------------------------------------------------------------------ | :-----: | ------------------------------ |
 | [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | 🟢      | Fully Compatible               |
 | [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | 🟢      | Fully Compatible               |
-| [Town of Us:Mira](https://github.com/AU-Avengers/TOU-Mira/)        | ⚠️      | Includes similar functionality |
+| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)       | ⚠️      | Includes similar functionality |
 | [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) | ❓       | Untested                       |
 
 > [!CAUTION]
