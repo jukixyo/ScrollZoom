@@ -1,6 +1,8 @@
 # Scroll Zoom
 
-A lightweight client-side mod for **Among Us** that lets you zoom the camera using your mouse wheel during gameplay.
+Scroll Zoom is a client-side camera modification for **Among Us** that enables adjustable zoom using the mouse scroll wheel.
+
+The mod directly modifies the in-game camera, altering the visible area rendered to the player. It is intended for **modded environments, development, testing, recording, and private lobbies**.
 
 ---
 
@@ -12,76 +14,59 @@ A lightweight client-side mod for **Among Us** that lets you zoom the camera usi
 
 ## Features
 
-* Scroll to zoom in and out
-* Works only during gameplay (matches and Freeplay)
+* Scroll wheel zoom control
+* Active only during gameplay (matches and Freeplay)
 * Automatically resets during meetings and body reports
-* Zoom state is cleared when the round ends or the map unloads
-
----
-
-## Installation
-
-This mod is already **prepacked with BepInEx**.
-
-1. Download the release zip.
-2. Extract all files into your **Among Us game folder**.
-3. Launch the game.
-
-No manual BepInEx setup required.
-
----
-
-## Usage
-
-* Scroll Up: Zoom in
-* Scroll Down: Zoom out
+* Zoom state is cleared when a round ends or when the map unloads
 
 Zoom is automatically reset:
 
-* During meetings and reports
+* During meetings and body reports
 * When leaving a game or when a round ends
 
----
-
-## Behavior Notes
-
-> [!NOTE]
-> Zoom is intentionally disabled in:
+> [!IMPORTANT]
+> Recommended use cases:
 >
-> * Lobbies
-> * Menus
-> * Settings and pre-game screens
-
-> [!NOTE]
-> This is a **client-side visual mod**. Other players will not see any effects.
+> * Private or modded lobbies
+> * Development and testing
+> * Freeplay
+> * Recording or cinematic use
 
 ---
 
 ## Compatibility
 
-|  Mods                                                              | Support | Remarks                          |
-| ------------------------------------------------------------------ | :-----: | -------------------------------- |
-| [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | 🟢      | Fully Compatible                 |
-| [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | 🟢      | Fully Compatible                 |
-| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)       | ⚠️      | Mod already has similar function |
-| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) | ⚫      | Untested                         |
+| Mod                                                                |   Status  | Notes                          |
+| ------------------------------------------------------------------ | :-------: | ------------------------------ |
+| [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | Supported | Fully compatible               |
+| [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | Supported | Fully compatible               |
+| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)       |  Partial  | Includes similar functionality |
+| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) |  Unknown  | Not tested                     |
 
 > [!CAUTION]
-> If another mod modifies camera or shadow behavior, this mod might break.
+> Mods that modify camera behavior, shadows, or rendering systems may introduce compatibility issues.
 
 ---
 
 ## Disclaimer
 
+> [!WARNING]
+> This mod modifies the camera’s orthographic size. As a result, it may:
+>
+> * Extend the visible area beyond normal player vision
+> * Bypass fog, lighting, and shadow masking
+> * Reveal areas and players that would not normally be visible
+
 > [!IMPORTANT]
-> This mod is **not affiliated with Innersloth**.  
-> Use at your own risk, especially in public or mod-restricted lobbies.
+> This project is **not affiliated with Innersloth**.
+> Use at your own discretion, particularly in public or restricted lobbies.
+> The developer assumes no responsibility for misuse or violations of server or community rules.
 
 ---
 
 ## Credits
 
-Developed by **jukixyo**  
-Built with **BepInEx IL2CPP** and **Harmony**
-
----
+| Source                                                       | Credit              |
+| ------------------------------------------------------------ | ------------------- |
+| [Town Of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/) | Main Zoom Code      |
+| [jukixyo](https://github.com/jukixyo)                        | Bugfixes & Patches  |
