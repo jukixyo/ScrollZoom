@@ -37,7 +37,7 @@ Zoom is automatically reset:
 ## Compatibility
 
 |  Mods                                                              | Support | Remarks                        |
-| ------------------------------------------------------------------ | ------- | ------------------------------ |
+| ------------------------------------------------------------------ | :-----: | ------------------------------ |
 | [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | 🟢      | Fully Compatible               |
 | [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | 🟢      | Fully Compatible               |
 | [Town of Us:Mira](https://github.com/AU-Avengers/TOU-Mira/)        | ⚠️      | Includes similar functionality |
