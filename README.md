@@ -36,12 +36,12 @@ Zoom is automatically reset:
 
 ## Compatibility
 
-| Mod                                                                |   Status  | Notes                          |
-| ------------------------------------------------------------------ | :-------: | ------------------------------ |
-| [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | Supported | Fully compatible               |
-| [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | Supported | Fully compatible               |
-| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)       |  Partial  | Includes similar functionality |
-| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) |  Unknown  | Not tested                     |
+|  Mods                                                              | Support | Remarks                        |
+| ------------------------------------------------------------------ | ------- | ------------------------------ |
+| [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | 🟢      | Fully Compatible               |
+| [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | 🟢      | Fully Compatible               |
+| [Town of Us:Mira](https://github.com/AU-Avengers/TOU-Mira/)        | ⚠️      | Includes similar functionality |
+| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) | ❓       | Untested                       |
 
 > [!CAUTION]
 > Mods that modify camera behavior, shadows, or rendering systems may introduce compatibility issues.
