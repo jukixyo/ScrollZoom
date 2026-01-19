@@ -41,7 +41,7 @@ The mod directly modifies the in-game camera, altering the visible area rendered
 | [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) | ❓       | Untested                       |
 
 > [!CAUTION]
-> Mods that modify camera behavior, shadows, or rendering systems may introduce compatibility issues.
+> Compatibility problems may arise from mods that alter rendering systems, shadows, or camera behavior.
 
 ---
 
