@@ -16,14 +16,11 @@ The mod directly modifies the in-game camera, altering the visible area rendered
 
 * Scroll wheel zoom control
 * Active only during gameplay (matches and Freeplay)
-* Automatically resets during meetings and body reports
-* Zoom state is cleared when a round ends or when the map unloads
-
-Zoom is automatically reset:
-
-* During meetings and body reports
-* When leaving a game or when a round ends
-
+* Zoom is automatically reset:
+  * During meetings and body reports
+  * When leaving a game or when a round ends  
+  
+  
 > [!IMPORTANT]
 > Recommended use cases:
 >
