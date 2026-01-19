@@ -1,8 +1,6 @@
 # Scroll Zoom
 
-Scroll Zoom is a client-side camera modification for **Among Us** that enables adjustable zoom using the mouse scroll wheel.
-
-The mod directly modifies the in-game camera, altering the visible area rendered to the player. It is intended for **modded environments, development, testing, recording, and private lobbies**.
+ScrollZoom is a clientside mod. Made for content creators for showcasing map and etc on a video. It is highly encouraged to only use this on a Private Lobby or Freeplay.
 
 ---
 
