@@ -91,18 +91,19 @@ public static class HudManager_Update_Patch
     {
         if (_targetZoom < 0f)
             return;
-
+    
         float current = Camera.main.orthographicSize;
-
-        float t = Time.deltaTime * ZoomSmoothSpeed;
-        float eased = t * t;
-
-        float newZoom = Mathf.Lerp(current, _targetZoom, eased);
-
-        // snap to target zoom when very close (fix shadow bug)
+    
+        float newZoom = Mathf.MoveTowards(
+            current,
+            _targetZoom,
+            ZoomSmoothSpeed * Time.deltaTime * 20f
+        );
+    
+        // snap to target when very close
         if (Mathf.Abs(newZoom - _targetZoom) < 0.01f)
             newZoom = _targetZoom;
-
+    
         ApplyZoom(newZoom);
     }
 
