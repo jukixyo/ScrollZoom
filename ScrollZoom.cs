@@ -1,17 +1,79 @@
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
+using BepInEx.Configuration;
 using HarmonyLib;
 using UnityEngine;
+using System;
 
-[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.1.0")]
+[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.1.2")]
 public class ScrollZoomPlugin : BasePlugin
 {
     private Harmony _harmony;
 
+    public static ConfigEntry<bool> EnableInterpolation;
+    public static ConfigEntry<float> InterpolationSpeed;
+    public static ConfigEntry<float> ZoomStepConfig;
+    public static ConfigEntry<float> MaxZoomConfig;
+
+    public static ConfigEntry<bool> InvertScroll;
+    public static ConfigEntry<string> ResetZoomKey;
+
+    public static ConfigEntry<bool> ResetZoomOnMeeting;
+
     public override void Load()
     {
+        EnableInterpolation = Config.Bind(
+            "Zoom",
+            "EnableInterpolation",
+            true,
+            "Enable smooth zoom animation"
+        );
+
+        InterpolationSpeed = Config.Bind(
+            "Zoom",
+            "InterpolationSpeed",
+            40f,
+            "How fast zoom interpolation reaches the target"
+        );
+
+        ZoomStepConfig = Config.Bind(
+            "Zoom",
+            "ZoomStep",
+            1.25f,
+            "Zoom multiplier applied per scroll"
+        );
+
+        MaxZoomConfig = Config.Bind(
+            "Zoom",
+            "MaxZoom",
+            15f,
+            "Maximum zoom level"
+        );
+
+        InvertScroll = Config.Bind(
+            "Controls",
+            "InvertScroll",
+            false,
+            "Invert mouse scroll direction"
+        );
+
+        ResetZoomKey = Config.Bind(
+            "Controls",
+            "ResetZoomKey",
+            "Null",
+            "Key used to reset zoom back to default (3). Set to Null to disable."
+        );
+
+        ResetZoomOnMeeting = Config.Bind(
+            "Gameplay",
+            "ResetZoomOnMeeting",
+            true,
+            "Reset zoom when meetings start"
+        );
+
         _harmony = new Harmony("com.jukixyo.scrollzoom");
         _harmony.PatchAll();
+
         Log.LogInfo("Scroll Zoom loaded.");
         ModManager.Instance.ShowModStamp();
     }
@@ -21,10 +83,6 @@ public class ScrollZoomPlugin : BasePlugin
 public static class HudManager_Update_Patch
 {
     private const float MinZoom = 3f;
-    private const float MaxZoom = 15f;
-    private const float ZoomStep = 1.25f;
-
-    private const float ZoomSmoothSpeed = 30f; // higher = snappier interpolation
 
     private static float _targetZoom = -1f;
     private static float _defaultZoom = -1f;
@@ -45,19 +103,25 @@ public static class HudManager_Update_Patch
 
         if (MeetingHud.Instance != null)
         {
-            ResetZoomMeetingSafe();
+            if (ScrollZoomPlugin.ResetZoomOnMeeting.Value)
+                ResetZoomMeetingSafe();
             return;
         }
 
         if (Minigame.Instance != null || HudManager.Instance.GameMenu.IsOpen)
             return;
 
-        // prevent zoom when chat is open
+        // chat scroll fix
         if (HudManager.Instance?.Chat != null && HudManager.Instance.Chat.IsOpenOrOpening)
             return;
 
+        HandleResetKey();
         HandleScrollZoom();
-        SmoothZoomStep();
+
+        if (ScrollZoomPlugin.EnableInterpolation.Value)
+            SmoothZoomStep();
+        else
+            ApplyZoom(_targetZoom);
     }
 
     private static bool IsInGameplay()
@@ -65,12 +129,31 @@ public static class HudManager_Update_Patch
         return PlayerControl.LocalPlayer != null && ShipStatus.Instance != null;
     }
 
+    private static void HandleResetKey()
+    {
+        if (ScrollZoomPlugin.ResetZoomKey.Value == "Null")
+            return;
+
+        try
+        {
+            KeyCode key = (KeyCode)Enum.Parse(typeof(KeyCode), ScrollZoomPlugin.ResetZoomKey.Value);
+
+            if (Input.GetKeyDown(key))
+                _targetZoom = MinZoom;
+        }
+        catch { }
+    }
+
     private static void HandleScrollZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (ScrollZoomPlugin.InvertScroll.Value)
+            scroll *= -1f;
+
         float current = Camera.main.orthographicSize;
 
-        if (_defaultZoom < 0f && PlayerControl.LocalPlayer != null && ShipStatus.Instance != null)
+        if (_defaultZoom < 0f)
         {
             _defaultZoom = current;
             _targetZoom = current;
@@ -82,8 +165,13 @@ public static class HudManager_Update_Patch
 
         if (scroll != 0f)
         {
-            float newSize = scroll > 0 ? _targetZoom / ZoomStep : _targetZoom * ZoomStep;
-            _targetZoom = Mathf.Clamp(newSize, MinZoom, MaxZoom);
+            float step = ScrollZoomPlugin.ZoomStepConfig.Value;
+
+            float newSize = scroll > 0
+                ? _targetZoom / step
+                : _targetZoom * step;
+
+            _targetZoom = Mathf.Clamp(newSize, MinZoom, ScrollZoomPlugin.MaxZoomConfig.Value);
         }
     }
 
@@ -94,9 +182,13 @@ public static class HudManager_Update_Patch
 
         float current = Camera.main.orthographicSize;
 
-        float newZoom = Mathf.Lerp(current, _targetZoom, Time.deltaTime * ZoomSmoothSpeed);
+        float newZoom = Mathf.Lerp(
+            current,
+            _targetZoom,
+            Time.deltaTime * ScrollZoomPlugin.InterpolationSpeed.Value
+        );
 
-        // snap exactly to target when close
+        // snap to exact step to avoid shadow issues
         if (Mathf.Abs(newZoom - _targetZoom) < 0.02f)
             newZoom = _targetZoom;
 
@@ -177,9 +269,8 @@ public static class HudManager_Update_Patch
             return;
 
         var aspects = HudManager.Instance.GetComponentsInChildren<AspectPosition>(true);
+
         foreach (var ap in aspects)
-        {
             ap.AdjustPosition();
-        }
     }
 }
