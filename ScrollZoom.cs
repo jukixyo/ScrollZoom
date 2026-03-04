@@ -24,7 +24,7 @@ public static class HudManager_Update_Patch
     private const float MaxZoom = 15f;
     private const float ZoomStep = 1.25f;
 
-    private const float ZoomSmoothSpeed = 12f;
+    private const float ZoomSmoothSpeed = 30f; // higher = snappier interpolation
 
     private static float _targetZoom = -1f;
     private static float _defaultZoom = -1f;
@@ -52,7 +52,7 @@ public static class HudManager_Update_Patch
         if (Minigame.Instance != null || HudManager.Instance.GameMenu.IsOpen)
             return;
 
-        // chat scroll fix
+        // prevent zoom when chat is open
         if (HudManager.Instance?.Chat != null && HudManager.Instance.Chat.IsOpenOrOpening)
             return;
 
@@ -94,13 +94,10 @@ public static class HudManager_Update_Patch
 
         float current = Camera.main.orthographicSize;
 
-        float t = Time.deltaTime * ZoomSmoothSpeed;
-        float eased = t * t;
+        float newZoom = Mathf.Lerp(current, _targetZoom, Time.deltaTime * ZoomSmoothSpeed);
 
-        float newZoom = Mathf.Lerp(current, _targetZoom, eased);
-
-        // snap to target zoom when very close (fix shadow bug)
-        if (Mathf.Abs(newZoom - _targetZoom) < 0.01f)
+        // snap exactly to target when close
+        if (Mathf.Abs(newZoom - _targetZoom) < 0.02f)
             newZoom = _targetZoom;
 
         ApplyZoom(newZoom);
