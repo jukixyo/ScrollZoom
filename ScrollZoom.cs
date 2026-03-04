@@ -5,7 +5,7 @@ using HarmonyLib;
 using UnityEngine;
 using System;
 
-[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.1.0")]
+[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.1.2")]
 public class ScrollZoomPlugin : BasePlugin
 {
     private Harmony _harmony;
