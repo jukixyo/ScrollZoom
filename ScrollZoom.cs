@@ -3,7 +3,7 @@ using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using UnityEngine;
 
-[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.0.3")]
+[BepInPlugin("com.jukixyo.scrollzoom", "Scroll Zoom", "1.1.0")]
 public class ScrollZoomPlugin : BasePlugin
 {
     private Harmony _harmony;
@@ -23,6 +23,8 @@ public static class HudManager_Update_Patch
     private const float MinZoom = 3f;
     private const float MaxZoom = 15f;
     private const float ZoomStep = 1.25f;
+
+    private const float ZoomSmoothSpeed = 12f;
 
     private static float _targetZoom = -1f;
     private static float _defaultZoom = -1f;
@@ -50,7 +52,12 @@ public static class HudManager_Update_Patch
         if (Minigame.Instance != null || HudManager.Instance.GameMenu.IsOpen)
             return;
 
+        // chat scroll fix
+        if (HudManager.Instance?.Chat != null && HudManager.Instance.Chat.IsOpenOrOpening)
+            return;
+
         HandleScrollZoom();
+        SmoothZoomStep();
     }
 
     private static bool IsInGameplay()
@@ -67,7 +74,7 @@ public static class HudManager_Update_Patch
         {
             _defaultZoom = current;
             _targetZoom = current;
-            return; // don't zoom on same frame as init
+            return;
         }
 
         if (_targetZoom < 0f)
@@ -77,8 +84,26 @@ public static class HudManager_Update_Patch
         {
             float newSize = scroll > 0 ? _targetZoom / ZoomStep : _targetZoom * ZoomStep;
             _targetZoom = Mathf.Clamp(newSize, MinZoom, MaxZoom);
-            ApplyZoom(_targetZoom);
         }
+    }
+
+    private static void SmoothZoomStep()
+    {
+        if (_targetZoom < 0f)
+            return;
+
+        float current = Camera.main.orthographicSize;
+
+        float t = Time.deltaTime * ZoomSmoothSpeed;
+        float eased = t * t;
+
+        float newZoom = Mathf.Lerp(current, _targetZoom, eased);
+
+        // snap to target zoom when very close (fix shadow bug)
+        if (Mathf.Abs(newZoom - _targetZoom) < 0.01f)
+            newZoom = _targetZoom;
+
+        ApplyZoom(newZoom);
     }
 
     private static void ResetZoomMeetingSafe()
@@ -126,7 +151,7 @@ public static class HudManager_Update_Patch
         if (Camera.main != null)
             Camera.main.orthographicSize = size;
 
-        if (HudManager.Instance != null && HudManager.Instance.UICamera != null) 
+        if (HudManager.Instance != null && HudManager.Instance.UICamera != null)
             HudManager.Instance.UICamera.orthographicSize = size;
 
         bool isDead = PlayerControl.LocalPlayer != null
