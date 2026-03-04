@@ -32,7 +32,7 @@ public class ScrollZoomPlugin : BasePlugin
         InterpolationSpeed = Config.Bind(
             "Zoom",
             "InterpolationSpeed",
-            30f,
+            40f,
             "How fast zoom interpolation reaches the target"
         );
 
