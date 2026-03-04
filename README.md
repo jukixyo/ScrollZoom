@@ -1,8 +1,6 @@
 # Scroll Zoom
 
-Scroll Zoom is a client-side camera modification for **Among Us** that enables adjustable zoom using the mouse scroll wheel.
-
-The mod directly modifies the in-game camera, altering the visible area rendered to the player. It is intended for **modded environments, development, testing, recording, and private lobbies**.
+ScrollZoom is a clientside mod. Made for content creators for showcasing map and etc on a video. It is highly encouraged to only use this on a Private Lobby or Freeplay.
 
 ---
 
@@ -16,14 +14,11 @@ The mod directly modifies the in-game camera, altering the visible area rendered
 
 * Scroll wheel zoom control
 * Active only during gameplay (matches and Freeplay)
-* Automatically resets during meetings and body reports
-* Zoom state is cleared when a round ends or when the map unloads
-
-Zoom is automatically reset:
-
-* During meetings and body reports
-* When leaving a game or when a round ends
-
+* Zoom is automatically reset:
+  * During meetings and body reports
+  * When leaving a game or when a round ends  
+  
+  
 > [!IMPORTANT]
 > Recommended use cases:
 >
@@ -36,15 +31,15 @@ Zoom is automatically reset:
 
 ## Compatibility
 
-| Mod                                                                |   Status  | Notes                          |
-| ------------------------------------------------------------------ | :-------: | ------------------------------ |
-| [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | Supported | Fully compatible               |
-| [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | Supported | Fully compatible               |
-| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)       |  Partial  | Includes similar functionality |
-| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) |  Unknown  | Not tested                     |
+|  Mods                                                              | Support | Remarks                        |
+| ------------------------------------------------------------------ | :-----: | ------------------------------ |
+| [Submerged](https://github.com/SubmergedAmongUs/Submerged/)        | ✅      | Fully Compatible               |
+| [LevelImpostor](https://github.com/DigiWorm0/LevelImposter)        | ✅      | Fully Compatible               |
+| [Town of Us: Mira](https://github.com/AU-Avengers/TOU-Mira/)       | ⚠️      | Includes similar functionality |
+| [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles/) | ❓       | Untested                       |
 
 > [!CAUTION]
-> Mods that modify camera behavior, shadows, or rendering systems may introduce compatibility issues.
+> Compatibility problems may arise from mods that alter rendering systems, shadows, or camera behavior.
 
 ---
 
