@@ -1,6 +1,4 @@
-# Scroll Zoom
 
-ScrollZoom is a clientside mod. Made for content creators for showcasing map and etc on a video. It is highly encouraged to only use this on a Private Lobby or Freeplay.
 
 ---
 
