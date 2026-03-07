@@ -1,5 +1,5 @@
 
-<img width="1600" height="800" alt="scrollzoombanner" src="https://github.com/user-attachments/assets/87195206-f462-4417-8327-0bc082497cf0" />
+<img width="1600" height="400" alt="scrollzoombannercropped" src="https://github.com/user-attachments/assets/76b3b627-850c-4efe-84b5-4dcd277f7426" />
 
 ---
 
@@ -15,7 +15,8 @@
 * Active only during gameplay (matches and Freeplay)
 * Zoom is automatically reset:
   * During meetings and body reports
-  * When leaving a game or when a round ends  
+  * When leaving a game or when a round ends
+* Zoom is interpolated and smoother than other mods.
   
   
 > [!IMPORTANT]
