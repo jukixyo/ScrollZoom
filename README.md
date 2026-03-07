@@ -1,5 +1,5 @@
 <div align="center">
- <img width="1600" height="400" alt="scrollzoombannercropped" src="https://github.com/user-attachments/assets/76b3b627-850c-4efe-84b5-4dcd277f7426" />
+ <a href="https://github.com/jukixyo/ScrollZoom"><img width="1600" height="400" alt="scrollzoombannercropped" src="https://github.com/user-attachments/assets/76b3b627-850c-4efe-84b5-4dcd277f7426" /></a>
    <a href="https://store.steampowered.com/app/945360/Among_Us"> <img alt="Latest AU Version" src="https://badgen.net/static/Among%20Us/v17.2.1/yellow"></a>
   <a href="https://github.com/jukixyo/ScrollZoom/releases/"> <img alt="Latest Release" src="https://badgen.net/github/release/jukixyo/ScrollZoom?icon=github"></a>
   <a href="https://github.com/jukixyo/ScrollZoom/releases/"> <img alt="GitHub Downloads" src="https://img.shields.io/github/downloads/jukixyo/ScrollZoom/total"></a>
