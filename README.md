@@ -15,6 +15,32 @@
 
 ---
 
+## How to access the settings
+
+ScrollZoom settings are stored in the **BepInEx configuration folder**.
+
+1. Open your **Among Us installation folder**.
+2. Navigate to:
+
+```
+Among Us/BepInEx/config/
+```
+
+3. Locate the file:
+
+```
+jukixyo.scrollzoom.cfg
+```
+
+4. Open the file using a text editor such as **Notepad** or **Notepad++**.
+5. Modify the settings as desired, then **save the file**.
+6. Restart the game for the changes to apply.
+
+> [!NOTE]
+> If the configuration file does not exist yet, launch the game **once with the mod installed** and BepInEx will automatically generate it.
+
+---
+
 ## Features
 
 * Scroll wheel zoom control
