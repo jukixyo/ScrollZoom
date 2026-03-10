@@ -1,10 +1,9 @@
 <div align="center">
  <a href="https://github.com/jukixyo/ScrollZoom"><img width="1600" height="400" alt="scrollzoombannercropped" src="https://github.com/user-attachments/assets/76b3b627-850c-4efe-84b5-4dcd277f7426" /></a>
-   <a href="https://store.steampowered.com/app/945360/Among_Us"> <img alt="Latest AU Version" src="https://badgen.net/static/Among%20Us/v17.2.1/yellow"></a>
-  <a href="https://github.com/jukixyo/ScrollZoom/releases/"> <img alt="Latest Release" src="https://badgen.net/static/Version/v1.1.2/blue?icon=github"></a>
-  <a href="https://www.curseforge.com/among-us/all-mods/scrollzoom/"> <img alt="Latest Release" src="https://badgen.net/static/Curseforge/v1.1.2/orange"></a>
-  <a href="https://github.com/jukixyo/ScrollZoom/releases/"> <img alt="GitHub Downloads" src="https://img.shields.io/github/downloads/jukixyo/ScrollZoom/total"></a>
-  <a href="https://discord.gg/ezjnd23Qjc"> <img alt="Mod Discord" src="https://img.shields.io/discord/1439884458567270410.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"></a>
+ <a href="https://www.curseforge.com/among-us/all-mods/scrollzoom"><img width="195" height="64" alt="curseforge_64h (1)" src="https://github.com/user-attachments/assets/1fb1d408-55e5-49c1-9047-506575cc2845" /></a>
+ <a href="https://discord.gg/GtZEEKNyyN"><img width="219" height="64" alt="discord-plural_64h" src="https://github.com/user-attachments/assets/3a749ab6-8484-48cc-b226-26d34cfeae22" /></a>
+ <a href="https://youtube.com/@Jukixyo"><img width="197" height="64" alt="youtube-singular_64h" src="https://github.com/user-attachments/assets/879e21d7-eefd-45b4-b661-3603acc18221" /></a>
+
 </div>
 
 ---
