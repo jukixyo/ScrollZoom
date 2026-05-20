@@ -2,7 +2,7 @@
  <a href="https://github.com/jukixyo/ScrollZoom"><img width="1600" height="400" alt="scrollzoombannercropped" src="https://github.com/user-attachments/assets/76b3b627-850c-4efe-84b5-4dcd277f7426" /></a>
  <a href="https://www.curseforge.com/among-us/all-mods/scrollzoom"><img width="195" height="64" alt="curseforge_64h (1)" src="https://github.com/user-attachments/assets/1fb1d408-55e5-49c1-9047-506575cc2845" /></a>
  <a href="https://discord.gg/GtZEEKNyyN"><img width="219" height="64" alt="discord-plural_64h" src="https://github.com/user-attachments/assets/3a749ab6-8484-48cc-b226-26d34cfeae22" /></a>
- <a href="https://youtube.com/@Jukixyo"><img width="197" height="64" alt="youtube-singular_64h" src="https://github.com/user-attachments/assets/879e21d7-eefd-45b4-b661-3603acc18221" /></a>
+ <a href="https://youtube.com/@1045xtz"><img width="197" height="64" alt="youtube-singular_64h" src="https://github.com/user-attachments/assets/879e21d7-eefd-45b4-b661-3603acc18221" /></a>
 
 </div>
 
